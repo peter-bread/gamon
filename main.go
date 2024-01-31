@@ -32,8 +32,10 @@ import (
 	_ "github.com/peter-bread/gamon/v2/cmd/account/view"
 	_ "github.com/peter-bread/gamon/v2/cmd/config"
 	_ "github.com/peter-bread/gamon/v2/cmd/init"
+	_ "github.com/peter-bread/gamon/v2/cmd/script"
 )
 
 func main() {
 	cmd.Execute()
+
 }
