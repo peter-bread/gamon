@@ -23,6 +23,7 @@ package main
 
 import (
 	"github.com/peter-bread/gamon/v2/cmd"
+
 	_ "github.com/peter-bread/gamon/v2/cmd/account"
 	_ "github.com/peter-bread/gamon/v2/cmd/account/add"
 	_ "github.com/peter-bread/gamon/v2/cmd/account/edit"

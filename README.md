@@ -28,6 +28,7 @@ zsh / bash (maybe add fish support in future)
 
 ```text
 gam <command>
+|-- start
 |-- init [<filepath>]
 |-- account <command>
 |   |-- add <account name>
@@ -41,6 +42,10 @@ gam <command>
 ### `gam <command>`
 
 Root command. Must be followed by a subcommand.
+
+### `gam start`
+
+Returns a shell script that needs to be `eval`ed or sourced in `.rc` file.
 
 ### `gam init [<filepath>]`
 
