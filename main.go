@@ -1,6 +1,5 @@
-The MIT License (MIT)
-
-Copyright © 2024 Peter Sheehan <github.com/peter-bread> 
+/*
+Copyright © 2024 Peter Sheehan <github.com/peter-bread>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +18,22 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+package main
+
+import (
+	"github.com/peter-bread/gamon/v2/cmd"
+
+	_ "github.com/peter-bread/gamon/v2/cmd/account"
+	_ "github.com/peter-bread/gamon/v2/cmd/account/add"
+	_ "github.com/peter-bread/gamon/v2/cmd/account/edit"
+	_ "github.com/peter-bread/gamon/v2/cmd/account/list"
+	_ "github.com/peter-bread/gamon/v2/cmd/account/remove"
+	_ "github.com/peter-bread/gamon/v2/cmd/account/view"
+	_ "github.com/peter-bread/gamon/v2/cmd/config"
+	_ "github.com/peter-bread/gamon/v2/cmd/init"
+)
+
+func main() {
+	cmd.Execute()
+}
