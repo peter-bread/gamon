@@ -19,6 +19,8 @@ func Execute() {
 		fmt.Println("Error: ", err)
 		return
 	}
+
+	// prints content from embedded file
 	fmt.Println("Content: ", string(data))
 
 	destinationDir := filepath.Join(os.Getenv("HOME"), ".config", "gamon")
@@ -37,6 +39,7 @@ func Execute() {
 		return
 	}
 
+	// prints confirmation message
 	fmt.Println("file copied to: ", destinationPath)
 
 }

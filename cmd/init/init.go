@@ -10,9 +10,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO provide short description
+// TODO provide long description
+
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	Use:   "init",
+	Use:   "init [<filepath>]",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -20,8 +23,19 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
+	Args: cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("init called")
+		// TODO define command
+
+		if len(args) == 0 {
+			// if no argument is passed, generate in home directory
+			return
+		} else {
+			// if filepath is provided, generate in the given path
+			return
+		}
+
 	},
 }
 
