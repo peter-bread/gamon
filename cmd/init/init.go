@@ -10,13 +10,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// TODO provide short description
 // TODO provide long description
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init [<filepath>]",
-	Short: "A brief description of your command",
+	Short: "Builds repository file structure in specified path.",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
