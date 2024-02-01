@@ -4,7 +4,7 @@ Embed files in current or sub directories so they can be included in go binary.
 
 Can embed config files and shell scripts and then copy them to correct locations.
 
-## TODO
+## Things TODO
 
 - Embed files
 - in `main`, define `init()`. In this function:

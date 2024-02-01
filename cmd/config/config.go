@@ -10,6 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO implement config command
+
 // configCmd represents the config command
 var configCmd = &cobra.Command{
 	Use:   "config",

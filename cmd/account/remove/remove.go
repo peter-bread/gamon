@@ -10,6 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO implement account remove command
+
 // removeCmd represents the remove command
 var removeCmd = &cobra.Command{
 	Use:   "remove",

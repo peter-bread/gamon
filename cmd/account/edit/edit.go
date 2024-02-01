@@ -10,6 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO implement account edit command
+
 // editCmd represents the edit command
 var editCmd = &cobra.Command{
 	Use:   "edit",

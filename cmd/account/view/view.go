@@ -10,6 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO implement account view command
+
 // viewCmd represents the view command
 var viewCmd = &cobra.Command{
 	Use:   "view",

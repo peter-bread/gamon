@@ -10,6 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO implement account add command
+
 // addCmd represents the add command
 var addCmd = &cobra.Command{
 	Use:   "add",

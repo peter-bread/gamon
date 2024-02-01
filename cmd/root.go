@@ -29,6 +29,8 @@ import (
 	"github.com/spf13/viper"
 )
 
+// TODO implement root command
+
 var cfgFile string
 
 // RootCmd represents the base command when called without any subcommands
