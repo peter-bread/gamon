@@ -4,28 +4,60 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package script
 
 import (
+	"embed"
 	"fmt"
+	"io/fs"
+	"os"
 
 	"github.com/peter-bread/gamon/v2/cmd"
 	"github.com/spf13/cobra"
 )
 
+// embed scripts directory so all can be accessed
+//
+//go:embed scripts/*
+var content embed.FS
+
 // scriptCmd represents the script command
 var scriptCmd = &cobra.Command{
 	Use:   "script",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Generates a script that contains the functions for account switching.",
+	Long: `Generates a script that contains the functions for account switching.
+	
+Include the following in your shell configuration file:
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	source <(gam script)`,
+	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("script called")
+
+		var scriptPath string
+
+		// get user's shell
+		switch shell := os.Getenv("SHELL"); shell {
+		case "/bin/zsh", "/usr/bin/zsh":
+			scriptPath = "scripts/gam.zsh"
+		case "/bin/bash", "/usr/bin/bash":
+			scriptPath = "scripts/gam.bash"
+		// TODO add case for fish
+		default:
+			fmt.Println("Unsupported shell: ", shell)
+			return
+		}
+
+		// read the script that corresponds to the shell
+		scriptContent, err := fs.ReadFile(content, scriptPath)
+
+		// handle error reading script
+		if err != nil {
+			fmt.Println("Error: ", err)
+			return
+		}
+
+		// print script
+		fmt.Println(string(scriptContent))
+
 	},
 }
-
-// TODO embed scripts
 
 func init() {
 	cmd.RootCmd.AddCommand(scriptCmd)
