@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dev", "main" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dev", "main" ]
 
 jobs:
 
@@ -25,8 +25,19 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
 
-    - name: Build
-      run: go build -v ./...
+    - name: Build and Test
+      run: |
+          make build
+          make test
 
-    - name: Test
-      run: go test -v ./...
+    - name: Lint
+      run: golangci-lint run
+
+    - name: Release
+      run: make release
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-artifacts
+        path: bin/
