@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dev", "main" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dev", "main" ]
 
 jobs:
 
@@ -26,10 +26,12 @@ jobs:
         go-version: ${{ matrix.go-version }}
 
     - name: Build
-      run: go build -v ./...
+      run: |
+        make build
 
     - name: Test
-      run: go test -v ./...
+      run: |
+        make test
 
     - name: Run golangci-lint
       uses: golangci/golangci-lint-action@v3.7.0
