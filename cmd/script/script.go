@@ -51,6 +51,7 @@ Include the following in your shell configuration file:
 		if err != nil {
 			fmt.Println("Error: ", err)
 			return
+			// TODO consider making this command return an error
 		}
 
 		// print script
