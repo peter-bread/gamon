@@ -7,7 +7,6 @@ gh_auth_switch_on_pwd() {
     # TODO read from account names file
     # account_names= ...
 
-    # TODO need check this works in bash
     # check directories using the GAM_REPO_ROOT_DIR environment variable
     for account_name in "${account_names[@]}"; do
         if [[ "$PWD" == "$GAM_REPO_ROOT_DIR/$account_name"* && "$current_account" != "$account_name" ]]; then
