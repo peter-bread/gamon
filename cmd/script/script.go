@@ -18,15 +18,15 @@ import (
 //go:embed scripts/*
 var content embed.FS
 
-// scriptCmd represents the script command
-var scriptCmd = &cobra.Command{
+// ScriptCmd represents the script command
+var ScriptCmd = &cobra.Command{
 	Use:   "script",
 	Short: "Generates a script that contains the functions for account switching.",
 	Long: `Generates a script that contains the functions for account switching.
-	
+    
 Include the following in your shell configuration file:
 
-	source <(gam script)`,
+    source <(gam script)`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 
@@ -60,7 +60,7 @@ Include the following in your shell configuration file:
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(scriptCmd)
+	cmd.RootCmd.AddCommand(ScriptCmd)
 
 	// Here you will define your flags and configuration settings.
 
