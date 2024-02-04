@@ -5,6 +5,10 @@ package init
 
 import (
 	"fmt"
+	"log"
+	"os"
+	fp "path/filepath"
+	"strings"
 
 	"github.com/peter-bread/gamon/v2/cmd"
 	"github.com/spf13/cobra"
@@ -14,26 +18,63 @@ import (
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	Use:   "init [<filepath>]",
-	Short: "Builds repository file structure in specified path.",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Use:   "init [filepath]",
+	Short: "Creates repository root directory.",
+	Long: `Cretes a new directory.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+This is used by the other commands to locate the repository root directory.
+If no path is provided, the command will ask for a name for the new directory.
+If the environment variable $HOME is found in the path, it will be replaced with $HOME.
+The absolute path will be printed to the console, and a line to add to the .bashrc or .zshrc file will be printed.
+This line sets the environment variable GAM_REPO_ROOT_DIR to the absolute path of the directory.`,
 	Args: cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("init called")
-		// TODO define command
 
-		if len(args) == 0 {
-			// if no argument is passed, generate in home directory
-			return
+		// Default path
+		filepath := ""
+
+		// If path is provided
+		if len(args) > 0 {
+			filepath = args[0]
 		} else {
-			// if filepath is provided, generate in the given path
-			return
+			// Ask for path
+			fmt.Print("\nEnter a name for the new directory: ")
+			_, err := fmt.Scanln(&filepath)
+			if err != nil {
+				log.Fatalf("Failed to read input: %v", err)
+			}
+			filepath = "./" + filepath
 		}
+
+		// Create directory
+		err := os.MkdirAll(filepath, os.ModePerm)
+		if err != nil {
+			log.Fatalf("Failed to create directory: %v", err)
+		} else {
+			fmt.Printf("Directory created: %s\n", filepath)
+		}
+
+		// Get the absolute path
+		absPath, err := fp.Abs(filepath)
+		if err != nil {
+			log.Fatalf("Failed to get absolute path: %v", err)
+		} else {
+			fmt.Printf("Absolute path extracted: %s\n", absPath)
+
+			// Get home directory
+			homedir, err := os.UserHomeDir()
+			if err != nil {
+				log.Fatalf("Failed to get home directory: %v", err)
+			} else {
+				fmt.Printf("Home directory extracted: %s\n", homedir)
+			}
+
+			// Replace home directory with $HOME in the path
+			absPath = strings.Replace(absPath, homedir, "$HOME", 1)
+		}
+
+		// Print shell command to set environment variable
+		fmt.Printf("Add the following line to your .bashrc or .zshrc file:\n\n    export GAM_REPO_ROOT_DIR=\"%s\"\n", absPath)
 
 	},
 }
