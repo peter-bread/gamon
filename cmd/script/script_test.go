@@ -1,12 +1,10 @@
-package script_test
+package script
 
 import (
 	_ "embed"
 	"os"
 	"strings"
 	"testing"
-
-	"github.com/peter-bread/gamon/v2/cmd/script"
 )
 
 //go:embed scripts/gam.zsh
@@ -47,7 +45,7 @@ func TestScriptCmd_Run(t *testing.T) {
 			os.Setenv("SHELL", tt.shell)
 
 			// Run the scriptCmd
-			script.ScriptCmd.Run(script.ScriptCmd, []string{})
+			scriptCmd.Run(scriptCmd, []string{})
 
 			// Close the write end of the pipe
 			w.Close()
