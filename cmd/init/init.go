@@ -14,13 +14,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// TODO provide long description
-
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init [filepath]",
 	Short: "Creates repository root directory.",
-	Long: `Cretes a new directory.
+	Long: `Creates repository root directory.
 
 This is used by the other commands to locate the repository root directory.
 If no path is provided, the command will ask for a name for the new directory.
