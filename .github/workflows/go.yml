@@ -24,7 +24,6 @@ jobs:
       uses: actions/setup-go@v5
       with:
         go-version: ${{ matrix.go-version }}
-        cache: false
 
     - name: Build
       run: go build -v ./...
@@ -34,6 +33,8 @@ jobs:
 
     - name: Run golangci-lint
       uses: golangci/golangci-lint-action@v3.7.0
+      with:
+        cache: false
   
 
   # lint:
