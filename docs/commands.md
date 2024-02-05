@@ -62,6 +62,235 @@ gam init ./repos
 
 Also copy embedded config file to `$HOME/.config/gamon/config` and create `account_names` in `$HOME/.config/gamon/account_names`.
 
+Examples of valid uses:
+
+***Starting in the user's home directory `~/` on a Mac.***
+
+Can create with a single word:
+
+```bash
+
+> gam init repos
+
+Directory created: ./repos
+Absolute path extracted: /Users/username/repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+
+```
+
+This is equivalent to:
+
+```bash
+> gam init ./repos
+
+Directory created: ./repos
+Absolute path extracted: /Users/username/repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+```
+
+For the two examples above, you could equivalently use `gam init "repos"` or `gam init "./repos"` and it would be the same.
+
+Can create wihtin nested directories:
+
+```bash
+> gam init repos/my-repos
+
+Directory created: ./repos/my-repos
+Absolute path extracted: /Users/username/repos/my-repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos/my-repos"
+```
+
+Directory name can include single spaces if enclosed in speech marks:
+
+```bash
+> gam init "my repos"
+
+Directory created: ./my repos
+Absolute path extracted: /Users/username/my repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/my repos"
+```
+
+Nested directories can also contain single spaces:
+
+```bash
+> gam init "my repos/my actual repos"
+
+Directory created: ./my repos/my actual repos
+Absolute path extracted: /Users/username/my repos/my actual repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/my repos/my actual repos"
+```
+
+Consecutive spaces are replaced by single ones, and spaces adjacent to `/`'s are removed:
+
+```bash
+> gam init "my  repos / my actual      repos"
+
+Directory created: ./my repos/my actual repos
+Absolute path extracted: /Users/username/my repos/my actual repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/my repos/my actual repos"
+```
+
+**Providing no argument triggers interactive mode:**
+
+>**WARNING:** You ***cannot*** use speech marks in this mode.
+
+Single word:
+
+```bash
+> gam init
+
+Enter a name for the new directory: repos
+Directory created: ./repos
+Absolute path extracted: /Users/username/repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+```
+
+```bash
+> gam init
+
+Directory created: ./repos
+Absolute path extracted: /Users/petersheehan/repos
+Home directory extracted: /Users/petersheehan
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+```
+
+Nested directories:
+
+```bash
+> gam init
+
+Enter a name for the new directory: repos/my-repos
+Directory created: ./repos/my-repos
+Absolute path extracted: /Users/username/repos/my-repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos/my-repos"
+```
+
+Directories that contain spaces:
+
+```bash
+> gam init
+
+Enter a name for the new directory: my repos
+Directory created: ./my repos
+Absolute path extracted: /Users/username/my repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/my repos"
+```
+
+Nested directories with spaces:
+
+```bash
+> gam init
+
+Enter a name for the new directory: my repos/my actual repos
+Directory created: ./my repos/my actual repos
+Absolute path extracted: /Users/username/my repos/my actual repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/my repos/my actual repos"
+```
+
+Consecutive spaces are replaced by single spaces, and spaces around `/`'s are removed:
+
+```bash
+> gam init
+
+Enter a name for the new directory: my    repos    /    my actual    repos
+Directory created: ./my repos/my actual repos
+Absolute path extracted: /Users/username/my repos/my actual repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/my repos/my actual repos"
+```
+
+***In an existing directory on Mac, `~/repos`:***
+
+Use `.` to initialise the current directory as the repo root directory:
+
+```bash
+> gam init .
+
+Directory created: .
+Absolute path extracted: /Users/username/repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+```
+
+Can also use a `.` in interactive mode:
+
+```bash
+> gam init
+
+Enter a name for the new directory: .
+Directory created: ./.
+Absolute path extracted: /Users/username/repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+```
+
+***In the directory `~/repos/repos`:***
+
+You can refer to parent directories:
+
+```bash
+> gam init ../
+
+Directory created: ../
+Absolute path extracted: /Users/username/repos
+Home directory extracted: /Users/username
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+```
+
+This also works in interactive mode:
+
+```bash
+> gam init
+
+Enter a name for the new directory: ../
+Directory created: ./../
+Absolute path extracted: /Users/petersheehan/repos
+Home directory extracted: /Users/petersheehan
+Add the following line to your .bashrc or .zshrc file:
+
+    export GAM_REPO_ROOT_DIR="$HOME/repos"
+```
+
 ### `gam create-acc-dirs`
 
 Generates directories for all accounts.
