@@ -97,7 +97,10 @@ This line sets the environment variable GAM_REPO_ROOT_DIR to the absolute path o
 				log.Fatalf("Directory name cannot end with a dot")
 			}
 
-			// Prepend "./" to the path
+		}
+
+		// Prepend "./" to the path if it doesn't already start with it
+		if !strings.HasPrefix(filepath, "./") {
 			filepath = "./" + filepath
 		}
 
@@ -106,7 +109,7 @@ This line sets the environment variable GAM_REPO_ROOT_DIR to the absolute path o
 		if err != nil {
 			log.Fatalf("Failed to create directory: %v", err)
 		} else {
-			fmt.Printf("Directory created: %s\n", filepath)
+			fmt.Printf("\nDirectory created: %s\n", filepath)
 		}
 
 		// Get the absolute path
