@@ -199,8 +199,10 @@ func processFilepath(filepath string) string {
 	// Replace multiple spaces with single space
 	filepath = strings.Join(strings.Fields(filepath), " ")
 
-	// Replace backslashes with forward slashes
+	// Remove spaces around slashes
 	filepath = strings.ReplaceAll(filepath, " / ", "/")
+
+	// TODO replace consecutive slashes with single slash
 
 	// Check for empty string
 	if filepath == "" {
@@ -221,6 +223,8 @@ func processFilepath(filepath string) string {
 	if !strings.HasPrefix(filepath, "./") {
 		filepath = "./" + filepath
 	}
+
+	// TODO remove repeated ./ from the path
 
 	// Remove trailing "/" from the path if it exists
 	filepath = strings.TrimSuffix(filepath, "/")
