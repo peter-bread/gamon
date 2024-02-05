@@ -4,6 +4,7 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package init
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
@@ -33,14 +34,70 @@ This line sets the environment variable GAM_REPO_ROOT_DIR to the absolute path o
 
 		// If path is provided
 		if len(args) > 0 {
-			filepath = args[0]
+
+			// Trim whitespace
+			filepath = strings.TrimSpace(args[0])
+
+			// Replace multiple spaces with single space
+			filepath = strings.Join(strings.Fields(filepath), " ")
+
+			// Replace backslashes with forward slashes
+			filepath = strings.ReplaceAll(filepath, " / ", "/")
+
+			// Check for empty string
+			if filepath == "" {
+				log.Fatalf("Directory name cannot be empty")
+			}
+
+			// Check for special characters
+			if strings.ContainsAny(filepath, `\|:;*?"<>`) {
+				log.Fatalf("Directory name cannot contain special characters")
+			}
+
+			// Check for trailing dot (except for ".")
+			if strings.HasSuffix(filepath, ".") && filepath != "." {
+				log.Fatalf("Directory name cannot end with a dot")
+			}
+
 		} else {
 			// Ask for path
 			fmt.Print("\nEnter a name for the new directory: ")
-			_, err := fmt.Scanln(&filepath)
+			reader := bufio.NewReader(os.Stdin)
+
+			// Read input
+			var err error
+			filepath, err = reader.ReadString('\n')
+
+			// Check for errors
 			if err != nil {
 				log.Fatalf("Failed to read input: %v", err)
 			}
+
+			// Trim whitespace
+			filepath = strings.TrimSpace(filepath)
+
+			// Replace multiple spaces with single space
+			filepath = strings.Join(strings.Fields(filepath), " ")
+
+			// Replace backslashes with forward slashes
+			filepath = strings.ReplaceAll(filepath, " / ", "/")
+
+			// Check for empty string
+			if filepath == "" {
+				log.Fatalf("Directory name cannot be empty")
+			}
+
+			// Check for special characters
+			if strings.ContainsAny(filepath, `\|:;*?"<>`) {
+				log.Fatalf("Directory name cannot contain special characters")
+			}
+
+			// Check for trailing dot (except for ".")
+			if strings.HasSuffix(filepath, ".") && filepath != "." {
+				log.Fatalf("Directory name cannot end with a dot")
+			}
+
+			// Prepend "./" to the path
 			filepath = "./" + filepath
 		}
 
@@ -73,7 +130,6 @@ This line sets the environment variable GAM_REPO_ROOT_DIR to the absolute path o
 
 		// Print shell command to set environment variable
 		fmt.Printf("Add the following line to your .bashrc or .zshrc file:\n\n    export GAM_REPO_ROOT_DIR=\"%s\"\n", absPath)
-
 	},
 }
 
