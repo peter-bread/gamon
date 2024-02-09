@@ -51,7 +51,10 @@ func TestScriptCmd_Run(t *testing.T) {
 
 			// Capture the output
 			var buf bytes.Buffer
-			io.Copy(&buf, r)
+			_, err := io.Copy(&buf, r)
+			if err != nil {
+				t.Fatal(err)
+			}
 			actualOutput := buf.String()
 
 			actualOutput = strings.TrimSuffix(actualOutput, "\n")
