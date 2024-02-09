@@ -23,11 +23,11 @@ func TestScriptCmd_Run(t *testing.T) {
 			shell:    "/bin/zsh",
 			expected: script,
 		},
-		// {
-		// 	name:     "bash shell",
-		// 	shell:    "/bin/bash",
-		// 	expected: script,
-		// },
+		{
+			name:     "bash shell",
+			shell:    "/bin/bash",
+			expected: script,
+		},
 		// TODO: Add test case for fish shell when implemented
 	}
 
