@@ -38,6 +38,8 @@ Include the following in your shell configuration file:
 			scriptPath = "scripts/gam.sh"
 		case "/bin/fish", "/usr/bin/fish":
 			// TODO add case for fish
+			fmt.Println("Fish shell not supported yet")
+			return
 		default:
 			fmt.Println("Unsupported shell: ", shell)
 			return
