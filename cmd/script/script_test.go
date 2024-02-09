@@ -1,17 +1,16 @@
 package script
 
 import (
+	"bytes"
 	_ "embed"
+	"io"
 	"os"
 	"strings"
 	"testing"
 )
 
-//go:embed scripts/gam.zsh
-var zshScript string
-
-//go:embed scripts/gam.bash
-var bashScript string
+//go:embed scripts/gam.sh
+var script string
 
 func TestScriptCmd_Run(t *testing.T) {
 	tests := []struct {
@@ -22,12 +21,12 @@ func TestScriptCmd_Run(t *testing.T) {
 		{
 			name:     "zsh shell",
 			shell:    "/bin/zsh",
-			expected: zshScript,
+			expected: script,
 		},
 		{
 			name:     "bash shell",
 			shell:    "/bin/bash",
-			expected: bashScript,
+			expected: script,
 		},
 		// TODO: Add test case for fish shell when implemented
 	}
@@ -51,9 +50,12 @@ func TestScriptCmd_Run(t *testing.T) {
 			w.Close()
 
 			// Capture the output
-			output := make([]byte, 1024)
-			n, _ := r.Read(output)
-			actualOutput := string(output[:n])
+			var buf bytes.Buffer
+			_, err := io.Copy(&buf, r)
+			if err != nil {
+				t.Fatal(err)
+			}
+			actualOutput := buf.String()
 
 			actualOutput = strings.TrimSuffix(actualOutput, "\n")
 
@@ -61,7 +63,7 @@ func TestScriptCmd_Run(t *testing.T) {
 			os.Stdout = oldStdout
 
 			if actualOutput != tt.expected {
-				t.Errorf("\nExpected: %s\nActual: %s", tt.expected, actualOutput)
+				// t.Errorf("\nExpected: %s\nActual: %s", tt.expected, actualOutput)
 				t.Errorf("\nExpected bytes: %v\nActual bytes: %v", []byte(tt.expected), []byte(actualOutput)) // analyse text exactly
 			}
 		})

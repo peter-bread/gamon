@@ -34,11 +34,12 @@ Include the following in your shell configuration file:
 
 		// get user's shell
 		switch shell := os.Getenv("SHELL"); shell {
-		case "/bin/zsh", "/usr/bin/zsh":
-			scriptPath = "scripts/gam.zsh"
-		case "/bin/bash", "/usr/bin/bash":
-			scriptPath = "scripts/gam.bash"
-		// TODO add case for fish
+		case "/bin/zsh", "/usr/bin/zsh", "/bin/bash", "/usr/bin/bash":
+			scriptPath = "scripts/gam.sh"
+		case "/bin/fish", "/usr/bin/fish":
+			// TODO add case for fish
+			fmt.Println("Fish shell not supported yet")
+			return
 		default:
 			fmt.Println("Unsupported shell: ", shell)
 			return
