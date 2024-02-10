@@ -1,0 +1,6 @@
+builds:
+  - id: "gamon"
+    binary: gam
+    goos:
+      - darwin
+      - linux
