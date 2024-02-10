@@ -19,3 +19,12 @@
 
 # Go workspace file
 go.work
+
+# Output directory for make build
+/bin/
+
+# Output directory for goreleaser
+dist/
+
+# MacOS
+.DS_Store
