@@ -15,6 +15,9 @@ gh_auth_switch_on_pwd() {
     return 1
   fi
 
+  # ensure GAM_REPO_ROOT_DIR does not end with a slash
+  GAM_REPO_ROOT_DIR="${GAM_REPO_ROOT_DIR%/}"
+
   # check if gh is installed
   trap 'GH_INSTALLED=' ERR
 
