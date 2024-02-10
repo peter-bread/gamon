@@ -4,45 +4,45 @@ GitHub Account Manager
 
 ## Prerequisites
 
-### OS
-
-MacOS / Linux
-
-### Shell
-
-zsh / bash (maybe add fish support in future)
+|   | MacOS | Linux |
+|---|-------|-------|
+| Shell | bash / zsh | bash / zsh |
+| Future Support | fish | fish |
 
 ## Dependencies
 
 ### Applications
 
-- gh
-- jq
+| Application | Link |
+|-------------|------|
+| gh          | [Link to gh](https://github.com/cli/cli) |
+| yq          | [Link to jq](https://github.com/mikefarah/yq) |
 
 ### Go Packages
 
-- cobra
-- promptui ???
+| Package | Link |
+|---------|------|
+| cobra   | [Link to cobra](https://github.com/spf13/cobra) |
 
 ## Installation
 
 ## Set up
 
-We need to set `GAM_REPO_ROOT_DIR`, the path where all git repos will be stored on the device:
-
->I think this variable will be set by the `init` command, and if I add a command to move it, then it can be updated there as well.
->
-> OR
->
->The `init` command will tell the user what needs to be put in their `.rc` file.
+We need to set `GAM_REPO_ROOT_DIR`, the path where all git repos will be stored on the device.
 
 ```text
 "$GAM_REPO_ROOT_DIR/"
-|-- work
-|   |-- project1
-|   |-- project2
-|-- personal
-|   |-- myrepo123
+|-- work/
+|   |-- project1/
+|   |-- project2/
+|-- personal/
+|   |-- myrepo123/
 |
 | ...
+```
+
+It should be set in `.zshrc` or `.bashrc` using the following:
+
+```shell
+export GAM_REPO_ROOT_DIR="/path/to/repo/root/directory"
 ```

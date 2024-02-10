@@ -4,16 +4,8 @@
 
 ```text
 gam <command>
-|-- init [<filepath>]
-|-- create-acc-dirs
 |-- script
 |-- account <command>
-|   |-- add <account name> [flags]
-|   |-- remove <account name>
-|   |-- edit
-|   |-- list
-|   |-- view <account name>
-|-- config
 |-- completion <shell> //builtin
 ```
 
