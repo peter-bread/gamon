@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        go-version: [ '1.20', '1.21' ]
+        go-version: [ '1.21' ]
     steps:
       - uses: actions/checkout@v4
 
@@ -48,22 +48,22 @@ jobs:
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v3.7.0
 
-  artifact:
-    needs: [build, lint]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  # artifact:
+  #   needs: [build, lint]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.21'
+  #     - name: Set up Go
+  #       uses: actions/setup-go@v5
+  #       with:
+  #         go-version: '1.21'
 
-      - name: Create Binaries
-        run: make build-binaries
+  #     - name: Create Binaries
+  #       run: make build-binaries
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4.3.0
-        with:
-          name: artifacts
-          path: bin/
+  #     - name: Upload Artifacts
+  #       uses: actions/upload-artifact@v4.3.0
+  #       with:
+  #         name: artifacts
+  #         path: bin/
