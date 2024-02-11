@@ -38,3 +38,6 @@ build-binaries:
 install: build
 	@mkdir -p /usr/local/bin || true
 	@cp $(OUTPUT_DIR)/$(BINARY_NAME) /usr/local/bin || echo "Failed to copy binary. Try running with sudo."
+
+uninstall:
+	@rm /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
