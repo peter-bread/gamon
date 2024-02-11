@@ -1,4 +1,4 @@
-.PHONY: build test clean release
+.PHONY: build test clean uninstall
 
 # The name of your binary
 BINARY_NAME=gam
