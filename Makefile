@@ -7,7 +7,7 @@ BINARY_NAME=gam
 OUTPUT_DIR=bin
 
 # The Go binary path
-export GOBIN=$(shell go env GOPATH)/bin/go
+export GOBIN=$(shell which go)
 
 # The Go build command
 GOBUILD=$(GOBIN) build
@@ -29,15 +29,5 @@ clean:
 	$(GOCLEAN)
 	rm -rf $(OUTPUT_DIR)
 
-build-binaries:
-	GOOS=darwin GOARCH=amd64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-darwin-amd64 -v
-	GOOS=darwin GOARCH=arm64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-darwin-arm64 -v
-	GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-linux-amd64 -v
-	GOOS=linux GOARCH=arm64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-linux-arm64 -v
-
-install: build
-	@mkdir -p /usr/local/bin || true
-	@cp $(OUTPUT_DIR)/$(BINARY_NAME) /usr/local/bin || echo "Failed to copy binary. Try running with sudo."
-
 uninstall:
-	@rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
+  @rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."

@@ -30,11 +30,8 @@ git checkout main
 git pull
 
 # Rebuild the tool
-make install
-```
+make build
 
-If this fails due to lack of permissions, try running with sudo:
-
-```shell
-sudo make install
+# Copy binary from repository to `/usr/local/bin`
+sudo mv ./bin/gam /usr/local/bin
 ```

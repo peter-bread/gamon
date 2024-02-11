@@ -106,16 +106,16 @@ cd gamon
 git checkout main
 
 # Build the tool
-make install
-```
+make build
 
-This will create a binary in `./bin/gam` and attempt to copy it to `/usr/local/bin`.
+# Create `/usr/local/bin` if it doesn't already exist
+sudo mkdir -p /usr/local/bin
+
+# Copy binary from repository to `/usr/local/bin`
+sudo mv ./bin/gam /usr/local/bin
+```
 
 If this fails due to lack of permissions, try running with sudo:
-
-```shell
-sudo make install
-```
 
 If for some reason `/bin/local/usr` is not in the `PATH`, then you can add it to your shell configuration file (`~/.bashrc` for bash or `~/.zshrc` for zsh) with:
 
