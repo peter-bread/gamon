@@ -5,11 +5,13 @@ GitHub Account Manager
 - [Prerequisites](#prerequisites)
 - [Dependencies](#dependencies)
 - [Installation](#installation)
-  - [Homebrew](#homebrew)
-  - [Pre-built Binaries](#pre-built-binaries)
-  - [Build from Source](#build-from-source)
+    - [Latest Release](#latest-release)
+      - [Latest Apple Silicon](#latest-apple-silicon)
+      - [Latest Linux x86\_64](#latest-linux-x86_64)
+      - [Other](#other)
+    - [Specific Version](#specific-version)
 - [Set up](#set-up)
-- [Other Documentation](#other-documentation)
+- [Documentation](#documentation)
 
 ## Prerequisites
 
@@ -24,7 +26,15 @@ Before you install this software, make sure you have a compatible shell installe
 
 This software depends on the following software:
 
-### Software <!-- omit from toc -->
+<!-- omit from toc -->
+### Build Dependencies
+
+| Application | Link |
+|-------------|------|
+| Go          | [Link to Go](https://golang.org/) |
+
+<!-- omit from toc -->
+### Runtime Dependencies
 
 | Application | Link |
 |-------------|------|
@@ -37,7 +47,10 @@ This software depends on the following software:
 
 ## Installation
 
+<!-- omit from toc -->
 ### Homebrew
+
+Homebrew will manage dependencies automatically.
 
 If you're on macOS, you can use [Homebrew](https://brew.sh/):
 
@@ -48,20 +61,68 @@ brew install gamon
 
 > Not tested yet, but this might work on Linux if you are using Linuxbrew.
 
+<!-- omit from toc -->
 ### Pre-built Binaries
+
+Ensure you have installed the [runtime dependencies](#runtime-dependencies).
 
 We provide pre-built binaries for different operating systems and CPUs. You can download the appropriate binary for your system from the [releases page](https://github.com/peter-bread/gamon/releases).
 
-The filename will be in the format `gamon_X.Y.Z_<OS>_<CPU>.tar.gz`, where:
+You can download from the terminal:
+
+#### Latest Release
+
+To install the latest release, pick one of the following:
+
+##### Latest Apple Silicon
+
+```shell
+curl -s https://api.github.com/repos/peter-bread/gamon/releases/latest \
+| grep "browser_download_url.*darwin_arm64*" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget --show-progress -qi -
+```
+
+##### Latest Linux x86_64
+
+```shell
+curl -s https://api.github.com/repos/peter-bread/gamon/releases/latest \
+| grep "browser_download_url.*linux_amd64*" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget --show-progress -qi -
+```
+
+##### Other
+
+```shell
+curl -s https://api.github.com/repos/peter-bread/gamon/releases/latest \
+| grep "browser_download_url.*{OS}_{CPU}*" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget --show-progress -qi -
+```
+
+<!-- NOTE: if I release deb or RPM packages in the future, I will need to update the grep command to reflect that -->
+<!-- `grep "browser_download_url.*linux_amd64.tar.gz" -->
+<!-- `grep "browser_download_url.*linux_amd64.deb" -->
+<!-- `grep "browser_download_url.*linux_amd64.rpm" -->
+
+#### Specific Version
+
+Alternatievly, see below to download a specific version from a terminal.
+
+The filename will be in the format `gamon_X.Y.Z_{OS}_{CPU}.tar.gz`, where:
 
 - `X.Y.Z` is the version number.
-- `<OS>` should be replaced with your operating system (e.g., `linux`, `darwin` for macOS).
-- `<CPU>` should be replaced with your CPU architecture (e.g., `amd64`, `arm64`, `386`).
+- `{OS}` should be replaced with your operating system (e.g., `linux`, `darwin` for macOS).
+- `{CPU}` should be replaced with your CPU architecture (e.g., `amd64`, `arm64`, `386`).
 
 Download the correct binary:
 
 ```shell
-curl -LO https://github.com/peter-bread/gamon/releases/download/vX.Y.Z/gamon_X.Y.Z_<OS>_<CPU>.tar.gz
+curl -LO https://github.com/peter-bread/gamon/releases/download/vX.Y.Z/gamon_X.Y.Z_{OS}_{CPU}.tar.gz
 ```
 
 Once you've downloaded the binary, extract it:
@@ -78,11 +139,12 @@ mv gamon_X.Y.Z_<OS>_<CPU> /usr/local/bin/gam
 
 If you have any issues with this step, see [Build from Source](#build-from-source) below for guidance.
 
+<!-- omit from toc -->
 ### Build from Source
 
 You can also build the software from source.
 
-Ensure that you have `go` installed.
+Ensure that you have both the [build and runtime dependencies](#dependencies) installed.
 
 ```shell
 # Clone gamon repository
@@ -157,7 +219,7 @@ source <(gam script)
 
 This will run the gam script command every time you start a new shell session, setting up the necessary environment for automatic account switching.
 
-## Other Documentation
+## Documentation
 
 - [Updating](./docs/update.md)
 - [Uninstalling](./docs/uninstall.md)

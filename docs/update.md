@@ -2,6 +2,8 @@
 
 ## Homebrew
 
+If you installed `gamon` using Homebrew, you can update it by first updating Homebrew itself and then upgrading the `gamon` package:
+
 ```shell
 brew update
 brew upgrade gamon
@@ -9,8 +11,11 @@ brew upgrade gamon
 
 ## Pre-built Binaries
 
+To update `gamon` when you've installed it using a pre-built binary, you'll need to manually replace the old binary with the new one. Here's how you can do it:
+
 ```shell
 # Remove the old binary
+# You may need sudo for this
 rm /usr/local/bin/gam
 
 # Download the new binary
@@ -20,6 +25,7 @@ curl -LO https://github.com/peter-bread/gamon/releases/download/vX.Y.Z/gamon_X.Y
 tar xzf gamon_X.Y.Z_<OS>_<CPU>.tar.gz
 
 # Move the binary to a directory in your PATH and rename to `gam`
+# You may need sudo for this
 mv gamon_X.Y.Z_<OS>_<CPU> /usr/local/bin/gam
 ```
 
