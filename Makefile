@@ -20,7 +20,7 @@ GOCLEAN=$(GOBIN) clean
 
 build:
 	mkdir -p $(OUTPUT_DIR)
-	$(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME) -v
+	$(GOBIN) build -o $(OUTPUT_DIR)/$(BINARY_NAME) -v
 
 test:
 	$(GOTEST) -v ./...
