@@ -73,10 +73,10 @@ Once you've downloaded the binary, extract it into the `~/.gamon` directory:
 mkdir -p ~/.gamon && tar xzf gamon_X.Y.Z_{OS}_[CPU].tar.gz -C ~/.gamon
 ```
 
-To run globally, move the binary to a directory in your PATH and rename it `gam`:
+To run globally, move the binary to a directory in your PATH:
 
 ```shell
-mv ~/.gamon/gamon_X.Y.Z_{OS}_[CPU} /usr/local/bin/gam
+mv ~/.gamon/gam /usr/local/bin
 ```
 
 > **Note:** You may need sudo for this.
