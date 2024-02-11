@@ -4,23 +4,18 @@ GitHub Account Manager
 
 - [Prerequisites](#prerequisites)
 - [Dependencies](#dependencies)
-- [Installation](#installation)
-    - [Latest Release](#latest-release)
-      - [Latest Apple Silicon](#latest-apple-silicon)
-      - [Latest Linux x86\_64](#latest-linux-x86_64)
-      - [Other](#other)
-    - [Specific Version](#specific-version)
-- [Set up](#set-up)
 - [Documentation](#documentation)
+- [Installation](#installation)
+- [Set up](#set-up)
 
 ## Prerequisites
 
 Before you install this software, make sure you have a compatible shell installed. We currently support `bash` and `zsh`, and plan to support `fish` in the future.
 
-|   | MacOS | Linux |
-|---|-------|-------|
-| Shell | bash / zsh | bash / zsh |
-| Future Support | fish | fish |
+|                | MacOS      | Linux      |
+| -------------- | ---------- | ---------- |
+| Shell          | bash / zsh | bash / zsh |
+| Future Support | fish       | fish       |
 
 ## Dependencies
 
@@ -29,28 +24,36 @@ This software depends on the following software:
 <!-- omit from toc -->
 ### Build Dependencies
 
-| Application | Link |
-|-------------|------|
+| Application | Link                              |
+| ----------- | --------------------------------- |
 | Go          | [Link to Go](https://golang.org/) |
 
 <!-- omit from toc -->
 ### Runtime Dependencies
 
-| Application | Link |
-|-------------|------|
-| gh          | [Link to gh](https://github.com/cli/cli) |
+| Application | Link                                          |
+| ----------- | --------------------------------------------- |
+| gh          | [Link to gh](https://github.com/cli/cli)      |
 | yq          | [Link to yq](https://github.com/mikefarah/yq) |
 
 `gh` is GitHub’s official command line tool. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with `git` and your code.
 
 `yq` is a portable command-line YAML processor. It uses `jq`-like syntax but works with yaml files as well as json.
 
+## Documentation
+
+- [Manual Installation](./docs/manual_installation.md)
+- [Updating](./docs/update.md)
+- [Uninstalling](./docs/uninstall.md)
+
 ## Installation
+
+Below are the two simplest ways to install the gamon binary, `gam`.
+
+Check out [manual installation](./docs/manual_installation.md) for more detailed installation instructions.
 
 <!-- omit from toc -->
 ### Homebrew
-
-Homebrew will manage dependencies automatically.
 
 If you're on macOS, you can use [Homebrew](https://brew.sh/):
 
@@ -59,6 +62,8 @@ brew tap peter-bread/gamon
 brew install gamon
 ```
 
+Homebrew will manage dependencies automatically.
+
 > Not tested yet, but this might work on Linux if you are using Linuxbrew.
 
 <!-- omit from toc -->
@@ -66,121 +71,32 @@ brew install gamon
 
 Ensure you have installed the [runtime dependencies](#runtime-dependencies).
 
-We provide pre-built binaries for different operating systems and CPUs. You can download the appropriate binary for your system from the [releases page](https://github.com/peter-bread/gamon/releases).
+You can use the [installation script](./scripts/install_binary.sh) to download, extract and install the binary.
 
-You can download from the terminal:
+This script downloads the pre-built binary, moves it to `/usr/local/bin`, and performs other necessary setup tasks.
 
-#### Latest Release
+> Before using this script, please ensure you review and understand the operations it performs. This is to ensure that it aligns with your intended use and doesn't cause unintended effects.
 
-To install the latest release, pick one of the following:
+You will be prompted for your password as the script does require sudo to:
 
-##### Latest Apple Silicon
+1. Create `/usr/local/bin` if it doesn't already exist.
+2. Copy the binary to `/usr/local/bin`.
 
-```shell
-curl -s https://api.github.com/repos/peter-bread/gamon/releases/latest \
-| grep "browser_download_url.*darwin_arm64*" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget --show-progress -qi -
-```
-
-##### Latest Linux x86_64
+For the latest release:
 
 ```shell
-curl -s https://api.github.com/repos/peter-bread/gamon/releases/latest \
-| grep "browser_download_url.*linux_amd64*" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget --show-progress -qi -
+curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install.sh | bash
 ```
 
-##### Other
+For a specific version:
 
 ```shell
-curl -s https://api.github.com/repos/peter-bread/gamon/releases/latest \
-| grep "browser_download_url.*{OS}_{CPU}*" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget --show-progress -qi -
+curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install.sh | bash -s -- X.Y.Z
 ```
 
-<!-- NOTE: if I release deb or RPM packages in the future, I will need to update the grep command to reflect that -->
-<!-- `grep "browser_download_url.*linux_amd64.tar.gz" -->
-<!-- `grep "browser_download_url.*linux_amd64.deb" -->
-<!-- `grep "browser_download_url.*linux_amd64.rpm" -->
+where `X.Y.Z` is the version you wish to install.
 
-#### Specific Version
-
-Alternatievly, see below to download a specific version from a terminal.
-
-The filename will be in the format `gamon_X.Y.Z_{OS}_{CPU}.tar.gz`, where:
-
-- `X.Y.Z` is the version number.
-- `{OS}` should be replaced with your operating system (e.g., `linux`, `darwin` for macOS).
-- `{CPU}` should be replaced with your CPU architecture (e.g., `amd64`, `arm64`, `386`).
-
-Download the correct binary:
-
-```shell
-curl -LO https://github.com/peter-bread/gamon/releases/download/vX.Y.Z/gamon_X.Y.Z_{OS}_{CPU}.tar.gz
-```
-
-Once you've downloaded the binary, extract it:
-
-```shell
-tar xzf gamon_X.Y.Z_<OS>_<CPU>.tar.gz
-```
-
-To run globally, move the binary to a directory in your PATH and rename it `gam`:
-
-```shell
-mv gamon_X.Y.Z_<OS>_<CPU> /usr/local/bin/gam
-```
-
-If you have any issues with this step, see [Build from Source](#build-from-source) below for guidance.
-
-<!-- omit from toc -->
-### Build from Source
-
-You can also build the software from source.
-
-Ensure that you have both the [build and runtime dependencies](#dependencies) installed.
-
-```shell
-# Clone gamon repository
-git clone https://github.com/peter-bread/gamon.git
-
-# Naviage to the gamon directory
-cd gamon
-
-# Ensure you are on the main branch
-git checkout main
-
-# Build the tool
-make install
-```
-
-This will create a binary in `./bin/gam` and attempt to copy it to `/usr/local/bin`.
-
-If this fails due to lack of permissions, try running with sudo:
-
-```shell
-sudo make install
-```
-
-If for some reason `/bin/local/usr` is not in the `PATH`, then you can add it to your shell configuration file (`~/.bashrc` for bash or `~/.zshrc` for zsh) with:
-
-```shell
-echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-```
-
-Then source the file for the changes to take effect:
-
-```shell
-source ~/.bashrc
-```
-
-<!-- ### Installation Script -->
+See [manual installation](./docs/manual_installation.md) for more installation options.
 
 ## Set up
 
@@ -218,8 +134,3 @@ source <(gam script)
 ```
 
 This will run the gam script command every time you start a new shell session, setting up the necessary environment for automatic account switching.
-
-## Documentation
-
-- [Updating](./docs/update.md)
-- [Uninstalling](./docs/uninstall.md)

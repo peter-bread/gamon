@@ -28,6 +28,8 @@ You may need to use sudo:
 sudo rm /usr/local/bin/gam
 ```
 
+You can also delete the directory that it was originally extracted to, `~/.gamon`.
+
 ## Built from Source
 
 If you built `gamon` from source, you can uninstall it by removing the binary:

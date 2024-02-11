@@ -9,27 +9,11 @@ brew update
 brew upgrade gamon
 ```
 
+> Ensure that the Homebrew tap `peter-bread/gamon` is still active.
+
 ## Pre-built Binaries
 
-To update `gamon` when you've installed it using a pre-built binary, you'll need to manually replace the old binary with the new one. Here's how you can do it:
-
-```shell
-# Remove the old binary
-# You may need sudo for this
-rm /usr/local/bin/gam
-
-# Download the new binary
-curl -LO https://github.com/peter-bread/gamon/releases/download/vX.Y.Z/gamon_X.Y.Z_<OS>_<CPU>.tar.gz
-
-# Extract the binary
-tar xzf gamon_X.Y.Z_<OS>_<CPU>.tar.gz
-
-# Move the binary to a directory in your PATH and rename to `gam`
-# You may need sudo for this
-mv gamon_X.Y.Z_<OS>_<CPU> /usr/local/bin/gam
-```
-
-Replace `X.Y.Z`, `<OS>`, and `<CPU>` with the version number, your operating system, and your CPU architecture, respectively.
+To update `gamon` when you've installed it using a pre-built binary, you'll need to manually replace the old binary with the new one. To do this you simply need to reinstall the tool, either with the [installation script](../README.md#pre-built-binaries) or [manually](./manual_installation.md#pre-built-binaries).
 
 ## Built from Source
 
