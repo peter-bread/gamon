@@ -70,7 +70,7 @@ Alteratively, download from the [releases page](https://github.com/peter-bread/g
 Once you've downloaded the binary, extract it into the `~/.gamon` directory:
 
 ```shell
-mkdir -p ~/.gamon && tar xzf gamon_X.Y.Z_{OS}_[CPU].tar.gz -C ~/.gamon
+mkdir -p ~/.gamon && tar xzf gamon_X.Y.Z_{OS}_{CPU}.tar.gz -C ~/.gamon
 ```
 
 To run globally, move the binary to a directory in your PATH:
