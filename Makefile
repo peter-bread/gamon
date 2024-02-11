@@ -30,4 +30,4 @@ clean:
 	rm -rf $(OUTPUT_DIR)
 
 uninstall:
-  @rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
+	@rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
