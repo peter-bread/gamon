@@ -6,17 +6,17 @@ BINARY_NAME=gam
 # The output directory
 OUTPUT_DIR=bin
 
-# The Go path
-GOPATH=$(shell which go)
+# The Go binary path
+GOBIN=$(shell which go)
 
 # The Go build command
-GOBUILD=go build
+GOBUILD=$(GOBIN) build
 
 # The Go test command
-GOTEST=go test
+GOTEST=$(GOBIN) test
 
 # The Go clean command
-GOCLEAN=go clean
+GOCLEAN=$(GOBIN) clean
 
 build:
 	mkdir -p $(OUTPUT_DIR)
