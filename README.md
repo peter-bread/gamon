@@ -9,6 +9,7 @@ GitHub Account Manager
   - [Pre-built Binaries](#pre-built-binaries)
   - [Build from Source](#build-from-source)
 - [Set up](#set-up)
+- [Other Documentation](#other-documentation)
 
 ## Prerequisites
 
@@ -51,22 +52,28 @@ brew install gamon
 
 We provide pre-built binaries for different operating systems and CPUs. You can download the appropriate binary for your system from the [releases page](https://github.com/peter-bread/gamon/releases).
 
-The filename will be in the format `gamon_x.y.z_<OS>_<CPU>.tar.gz`, where:
+The filename will be in the format `gamon_X.Y.Z_<OS>_<CPU>.tar.gz`, where:
 
-- `x.y.z` is the version number.
+- `X.Y.Z` is the version number.
 - `<OS>` should be replaced with your operating system (e.g., `linux`, `darwin` for macOS).
 - `<CPU>` should be replaced with your CPU architecture (e.g., `amd64`, `arm64`, `386`).
+
+Download the correct binary:
+
+```shell
+curl -LO https://github.com/peter-bread/gamon/releases/download/vX.Y.Z/gamon_X.Y.Z_<OS>_<CPU>.tar.gz
+```
 
 Once you've downloaded the binary, extract it:
 
 ```shell
-tar xzf gamon_x.y.z_<OS>_<CPU>.tar.gz
+tar xzf gamon_X.Y.Z_<OS>_<CPU>.tar.gz
 ```
 
-To run globally, move the binary to a directory in your PATH:
+To run globally, move the binary to a directory in your PATH and rename it `gam`:
 
 ```shell
-mv gamon_x.y.z_<OS>_<CPU> /usr/local/bin
+mv gamon_X.Y.Z_<OS>_<CPU> /usr/local/bin/gam
 ```
 
 If you have any issues with this step, see [Build from Source](#build-from-source) below for guidance.
@@ -78,29 +85,25 @@ You can also build the software from source.
 Ensure that you have `go` installed.
 
 ```shell
+# Clone gamon repository
 git clone https://github.com/peter-bread/gamon.git
+
+# Naviage to the gamon directory
 cd gamon
-make build
+
+# Ensure you are on the main branch
+git checkout main
+
+# Build the tool
+make install
 ```
 
-This will create a binary in `./bin/gam`.
+This will create a binary in `./bin/gam` and attempt to copy it to `/usr/local/bin`.
 
-To make this available globally:
-
-```shell
-mv ./bin/gam /usr/local/bin
-```
-
-If you encounter permission issues:
+If this fails due to lack of permissions, try running with sudo:
 
 ```shell
-sudo mv ./bin/gam /usr/local/bin
-```
-
-If `/usr/local/bin` does not exist, you can create it with:
-
-```shell
-sudo mkdir -p /usr/local/bin
+sudo make install
 ```
 
 If for some reason `/bin/local/usr` is not in the `PATH`, then you can add it to your shell configuration file (`~/.bashrc` for bash or `~/.zshrc` for zsh) with:
@@ -113,13 +116,6 @@ Then source the file for the changes to take effect:
 
 ```shell
 source ~/.bashrc
-```
-
-After installation, you can delete the cloned repository if you wish:
-
-```shell
-cd ..
-rm -rf gamon
 ```
 
 <!-- ### Installation Script -->
@@ -160,3 +156,8 @@ source <(gam script)
 ```
 
 This will run the gam script command every time you start a new shell session, setting up the necessary environment for automatic account switching.
+
+## Other Documentation
+
+- [Updating](./docs/update.md)
+- [Uninstalling](./docs/uninstall.md)
