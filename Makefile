@@ -7,7 +7,7 @@ BINARY_NAME=gam
 OUTPUT_DIR=bin
 
 # The Go path
-GOPATH=$(shell go env GOPATH)
+GOPATH=$(shell which go)
 
 # The Go build command
 GOBUILD=go build
