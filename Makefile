@@ -1,4 +1,4 @@
-.PHONY: build test clean release
+.PHONY: build test clean uninstall
 
 # The name of your binary
 BINARY_NAME=gam
@@ -6,17 +6,17 @@ BINARY_NAME=gam
 # The output directory
 OUTPUT_DIR=bin
 
-# The Go path
-GOPATH=$(shell go env GOPATH)
+# The Go binary path
+export GOBIN=$(shell which go)
 
 # The Go build command
-GOBUILD=go build
+GOBUILD=$(GOBIN) build
 
 # The Go test command
-GOTEST=go test
+GOTEST=$(GOBIN) test
 
 # The Go clean command
-GOCLEAN=go clean
+GOCLEAN=$(GOBIN) clean
 
 build:
 	mkdir -p $(OUTPUT_DIR)
@@ -29,8 +29,5 @@ clean:
 	$(GOCLEAN)
 	rm -rf $(OUTPUT_DIR)
 
-build-binaries:
-	GOOS=darwin GOARCH=amd64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-darwin-amd64 -v
-	GOOS=darwin GOARCH=arm64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-darwin-arm64 -v
-	GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-linux-amd64 -v
-	GOOS=linux GOARCH=arm64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-linux-arm64 -v
+uninstall:
+	@rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
