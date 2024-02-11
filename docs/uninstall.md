@@ -28,7 +28,11 @@ You may need to use sudo:
 sudo rm /usr/local/bin/gam
 ```
 
-You can also delete the directory that it was originally extracted to, `~/.gamon`.
+You can also delete the directory that it was originally extracted to, `~/.gamon`:
+
+```shell
+rm -r ~/.gamon
+```
 
 ## Built from Source
 
