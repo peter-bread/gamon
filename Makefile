@@ -10,7 +10,7 @@ OUTPUT_DIR=bin
 GOBIN=$(shell which go)
 
 # The Go build command
-GOBUILD='$(GOBIN) build'
+GOBUILD=$(GOBIN) build
 
 # The Go test command
 GOTEST=$(GOBIN) test
