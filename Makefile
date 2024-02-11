@@ -7,7 +7,7 @@ BINARY_NAME=gam
 OUTPUT_DIR=bin
 
 # The Go binary path
-GOBIN=$(shell which go)
+export GOBIN=$(shell which go)
 
 # The Go build command
 GOBUILD=$(GOBIN) build
