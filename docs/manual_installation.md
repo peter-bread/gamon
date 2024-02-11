@@ -95,6 +95,21 @@ You can also build the software from source.
 
 Ensure that you have both the [build and runtime dependencies](../README.md#dependencies) installed.
 
+### Installation Script
+
+```shell
+curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install_from_source.sh | bash
+```
+
+> Before using this script, please ensure you review and understand the operations it performs. This is to ensure that it aligns with your intended use and doesn't cause unintended effects.
+
+You will be prompted for your password as the script does require sudo to:
+
+1. Create `/usr/local/bin` if it doesn't already exist.
+2. Copy the binary to `/usr/local/bin`.
+
+### Manual Terminal Commands
+
 ```shell
 # Clone gamon repository
 git clone https://github.com/peter-bread/gamon.git
@@ -114,8 +129,6 @@ sudo mkdir -p /usr/local/bin
 # Copy binary from repository to `/usr/local/bin`
 sudo mv ./bin/gam /usr/local/bin
 ```
-
-If this fails due to lack of permissions, try running with sudo:
 
 If for some reason `/bin/local/usr` is not in the `PATH`, then you can add it to your shell configuration file (`~/.bashrc` for bash or `~/.zshrc` for zsh) with:
 
