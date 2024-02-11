@@ -85,13 +85,13 @@ You will be prompted for your password as the script does require sudo to:
 For the latest release:
 
 ```shell
-curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install_binary.sh | bash
 ```
 
 For a specific version:
 
 ```shell
-curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install.sh | bash -s -- X.Y.Z
+curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install_binary.sh | bash -s -- X.Y.Z
 ```
 
 where `X.Y.Z` is the version you wish to install.
