@@ -40,4 +40,4 @@ install: build
 	@cp $(OUTPUT_DIR)/$(BINARY_NAME) /usr/local/bin || echo "Failed to copy binary. Try running with sudo."
 
 uninstall:
-	@rm /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
+	@rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
