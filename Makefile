@@ -34,3 +34,7 @@ build-binaries:
 	GOOS=darwin GOARCH=arm64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-darwin-arm64 -v
 	GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-linux-amd64 -v
 	GOOS=linux GOARCH=arm64 $(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME)-linux-arm64 -v
+
+install: build
+	@mkdir -p /usr/local/bin || true
+	@cp $(OUTPUT_DIR)/$(BINARY_NAME) /usr/local/bin || echo "Failed to copy binary. Try running with sudo."
