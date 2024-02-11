@@ -10,7 +10,7 @@ OUTPUT_DIR=bin
 GOBIN=$(shell which go)
 
 # The Go build command
-GOBUILD=$(GOBIN) build
+GOBUILD="$(GOBIN) build"
 
 # The Go test command
 GOTEST=$(GOBIN) test
@@ -20,7 +20,7 @@ GOCLEAN=$(GOBIN) clean
 
 build:
 	mkdir -p $(OUTPUT_DIR)
-	$(GOBIN) build -o $(OUTPUT_DIR)/$(BINARY_NAME) -v
+	$(GOBUILD) -o $(OUTPUT_DIR)/$(BINARY_NAME) -v
 
 test:
 	$(GOTEST) -v ./...
