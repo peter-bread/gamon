@@ -37,9 +37,6 @@ jobs:
     needs: goreleaser
     if: ${{ needs.goreleaser.result == 'success' }}
     steps:
-    - name: Wait for release
-      run: sleep 60
-      
     - name: Check out code
       uses: actions/checkout@v4
 
@@ -64,8 +61,8 @@ jobs:
         git checkout -b update-$FORMULA_NAME-$VERSION
 
         # Update the formula file
-        sed -i "s/^  url .*/  url \"https:\/\/github.com\/$SOFTWARE_USERNAME\/$SOFTWARE_REPO\/archive\/$VERSION.tar.gz\"/" Formula/$FORMULA_NAME.rb
-        sed -i "s/^  sha256 .*/  sha256 \"$SHA256\"/" Formula/$FORMULA_NAME.rb
+        sed -i "s/^    url .*/    url \"https:\/\/github.com\/$SOFTWARE_USERNAME\/$SOFTWARE_REPO\/archive\/$VERSION.tar.gz\"/" Formula/$FORMULA_NAME.rb
+        sed -i "s/^    sha256 .*/    sha256 \"$SHA256\"/" Formula/$FORMULA_NAME.rb
 
         # Commit and push the changes
         git config --global user.name "GitHub Actions"
