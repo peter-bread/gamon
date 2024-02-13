@@ -37,6 +37,9 @@ jobs:
     needs: goreleaser
     if: ${{ needs.goreleaser.result == 'success' }}
     steps:
+    - name: Wait for release
+      run: sleep 60
+      
     - name: Check out code
       uses: actions/checkout@v4
 
