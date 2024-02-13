@@ -74,6 +74,6 @@ jobs:
         sleep 5
 
         # Create a pull request
-        gh pr create --title "Update $FORMULA_NAME to $VERSION" --body "" --base master --head update-$FORMULA_NAME-$VERSION
+        gh pr create --title "Update $FORMULA_NAME to $VERSION" --body "" --base main --head update-$FORMULA_NAME-$VERSION
       env:
         GH_TOKEN: ${{ secrets.GH_PAT }}
