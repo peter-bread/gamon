@@ -71,6 +71,8 @@ jobs:
         git remote set-url --push origin https://$TAP_USERNAME:$GH_TOKEN@github.com/$TAP_USERNAME/$TAP_REPO.git
         git push origin update-$FORMULA_NAME-$VERSION
 
+        sleep 5
+
         # Create a pull request
         gh pr create --title "Update $FORMULA_NAME to $VERSION" --body "" --base master --head update-$FORMULA_NAME-$VERSION
       env:
