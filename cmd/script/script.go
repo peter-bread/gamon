@@ -21,7 +21,7 @@ var content embed.FS
 // scriptCmd represents the script command
 var scriptCmd = &cobra.Command{
 	Use:   "script",
-	Short: "Generates a script that contains the functions for account switching.",
+	Short: "Generates a script that contains the functions for account switching",
 	Long: `Generates a script that contains the functions for account switching.
     
 Include the following in your shell configuration file:
