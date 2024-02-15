@@ -1,4 +1,4 @@
-name: release and update homebrew
+name: Release and Update Homebrew
 
 on:
   push:
@@ -61,8 +61,8 @@ jobs:
         git checkout -b update-$FORMULA_NAME-$VERSION
 
         # Update the formula file
-        sed -i "s/^    url .*/    url \"https:\/\/github.com\/$SOFTWARE_USERNAME\/$SOFTWARE_REPO\/archive\/$VERSION.tar.gz\"/" Formula/$FORMULA_NAME.rb
-        sed -i "s/^    sha256 .*/    sha256 \"$SHA256\"/" Formula/$FORMULA_NAME.rb
+        sed -i "s/^  url .*/  url \"https:\/\/github.com\/$SOFTWARE_USERNAME\/$SOFTWARE_REPO\/archive\/$VERSION.tar.gz\"/" Formula/$FORMULA_NAME.rb
+        sed -i "s/^  sha256 .*/  sha256 \"$SHA256\"/" Formula/$FORMULA_NAME.rb
 
         # Commit and push the changes
         git config --global user.name "GitHub Actions"
@@ -74,6 +74,6 @@ jobs:
         sleep 5
 
         # Create a pull request
-        gh pr create --title "Update $FORMULA_NAME to $VERSION" --body "" --base main --head update-$FORMULA_NAME-$VERSION
+        gh pr create --title "Update $FORMULA_NAME to $VERSION" --body "This pull request updates the $FORMULA_NAME formula to version $VERSION. The formula file has been updated with the new version's URL and SHA-256 checksum." --base main --head update-$FORMULA_NAME-$VERSION
       env:
         GH_TOKEN: ${{ secrets.GH_PAT }}
