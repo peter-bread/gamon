@@ -32,6 +32,8 @@ clean:
 install: build
 	@mkdir -p ~/.gamon/bin
 	@mv $(OUTPUT_DIR)/$(BINARY_NAME) ~/.gamon/bin/$(BINARY_NAME)
+
+install: clean
 	@echo "Installation completed successfully."
 	@echo "Please add the following line to your .bashrc or .zshrc:"
 	@echo 'export PATH="$$HOME/.gamon/bin:$$PATH"'
