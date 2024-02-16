@@ -112,6 +112,6 @@ fi
 # Move the binary to ~/.gamon/bin
 mv ~/.gamon/gam ~/.gamon/bin
 
-echo "Installation completed successfully."
-echo "Please add the following line to your .bashrc or .zshrc:"
-echo 'export PATH="$HOME/.gamon/bin:$PATH"'
+echo -e "Installation completed successfully.\n"
+echo -e "Please add the following line to your .bashrc or .zshrc:\n"
+echo '    export PATH="$HOME/.gamon/bin:$PATH"'
