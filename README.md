@@ -1,12 +1,25 @@
-# gamon <!-- omit from toc -->
+<!-- omit from toc -->
+# gamon
 
-GitHub Account Manager
+[![GitHub Release](https://img.shields.io/github/v/release/peter-bread/gamon?style=for-the-badge&color=ff00a1)](https://github.com/peter-bread/gamon/releases/latest) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=dev&style=for-the-badge&label=build%20and%20test%3A%20dev) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=main&style=for-the-badge&label=build%20and%20test%3A%20main) ![GitHub commits since latest release](https://img.shields.io/github/commits-since/peter-bread/gamon/latest?style=for-the-badge) [![GitHub License](https://img.shields.io/github/license/peter-bread/gamon?style=for-the-badge&color=008500)
+](./LICENSE)
+
+---
+
+Gamon is a command line tool that helps with managing multiple GitHub accounts on one machine.
+
+Right now, it's main functionality is switching the active `gh` account based on your current working directory.
+
+<!-- omit from toc -->
+## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Dependencies](#dependencies)
-- [Documentation](#documentation)
 - [Installation](#installation)
 - [Set up](#set-up)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [License](#license)
 
 ## Prerequisites
 
@@ -39,12 +52,6 @@ This software depends on the following software:
 `gh` is GitHub’s official command line tool. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with `git` and your code.
 
 `yq` is a portable command-line YAML processor. It uses `jq`-like syntax but works with yaml files as well as json.
-
-## Documentation
-
-- [Manual Installation](./docs/manual_installation.md)
-- [Updating](./docs/update.md)
-- [Uninstalling](./docs/uninstall.md)
 
 ## Installation
 
@@ -99,9 +106,11 @@ See [manual installation](./docs/manual_installation.md) for more installation o
 
 ## Set up
 
-See [this guide](https://github.com/peter-bread/git-ssh-management) for a detailed set up guide.
+See [this guide](https://github.com/peter-bread/git-ssh-management) for a setting up the required file structure.
 
 > In future releases, I hope to automate much of the set up process.
+>
+> *Or change it entirely...*
 
 You need to set `GAM_REPO_ROOT_DIR`, the path where all of **your** git repositories will be stored.
 
@@ -133,3 +142,26 @@ source <(gam script)
 ```
 
 This will run the gam script command every time you start a new shell session, setting up the necessary environment for automatic account switching.
+
+## Usage
+
+After settimg up `gam` as described in the [set up](#set-up) section, you can start using it to manage your GitHub accounts.
+
+`gam` uses the `GAM_REPO_ROOT_DIR` environment variable to determine which GitHub account to use based on the current repository. When you navigate to a directory within `GAM_REPO_ROOT_DIR` and run a GitHub CLI command, `gam` will automatically switch to the account associated with that directory.
+
+Remember to source the `gam script` in each new shell session to enable automatic account switching:
+
+```shell
+source <(gam script)
+```
+
+## Documentation
+
+- [Manual Installation](./docs/manual_installation.md)
+- [Commands](./docs/commands.md)
+- [Updating](./docs/update.md)
+- [Uninstalling](./docs/uninstall.md)
+
+## License
+
+This project is licensed under the terms of the MIT license. See the [LICENSE](./LICENSE) file for the full license text.
