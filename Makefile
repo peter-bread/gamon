@@ -29,5 +29,12 @@ clean:
 	$(GOCLEAN)
 	rm -rf $(OUTPUT_DIR)
 
+install: build
+	@mkdir -p ~/.gamon/bin
+	@mv $(OUTPUT_DIR)/$(BINARY_NAME) ~/.gamon/bin/$(BINARY_NAME)
+	@echo "Installation completed successfully."
+	@echo "Please add the following line to your .bashrc or .zshrc:"
+	@echo 'export PATH="$HOME/.gamon/bin:$PATH"'
+
 uninstall:
-	@rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
+	@rm -f ~/.gamon/bin/$(BINARY_NAME) || echo "Failed to remove binary."

@@ -73,14 +73,11 @@ Ensure you have installed the [runtime dependencies](#runtime-dependencies).
 
 You can use the [installation script](./scripts/install_binary.sh) to download, extract and install the binary.
 
-This script downloads the pre-built binary, moves it to `/usr/local/bin`, and performs other necessary setup tasks.
+This script downloads the pre-built binary, moves it to `~/.gamon/bin`, and performs other necessary setup tasks.
 
 > Before using this script, please ensure you review and understand the operations it performs. This is to ensure that it aligns with your intended use and doesn't cause unintended effects.
 
-You will be prompted for your password as the script does require sudo to:
-
-1. Create `/usr/local/bin` if it doesn't already exist.
-2. Copy the binary to `/usr/local/bin`.
+You will be prompted to add `~/.gamon/bin` to PATH in your `.bashrc` or `zshrc`.
 
 For the latest release:
 
