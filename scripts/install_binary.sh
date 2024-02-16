@@ -101,7 +101,7 @@ if [ -z "$URL" ]; then
 fi
 
 # Create the application directories if they don't exist
-mkdir -p ~/.gamon
+mkdir -p ~/.gamon/bin
 
 # Download the tarball and extract it to the application directory
 if ! wget --show-progress -q $URL -O - | tar xzf - -C ~/.gamon/; then
@@ -109,10 +109,9 @@ if ! wget --show-progress -q $URL -O - | tar xzf - -C ~/.gamon/; then
   exit 1
 fi
 
-# Ensure /usr/local/bin exists
-sudo mkdir -p /usr/local/bin
+# Move the binary to ~/.gamon/bin
+mv ~/.gamon/gam ~/.gamon/bin
 
-# Move the binary to /usr/local/bin
-sudo mv ~/.gamon/gam /usr/local/bin/gam
-
-echo "Installation completed successfully."
+echo -e "\nInstallation completed successfully.\n"
+echo -e "Please add the following line to your .bashrc or .zshrc:\n"
+echo '    export PATH="$HOME/.gamon/bin:$PATH"'

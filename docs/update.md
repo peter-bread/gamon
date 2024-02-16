@@ -29,9 +29,8 @@ git checkout main
 # Pull the latest changes
 git pull
 
-# Rebuild the tool
-make build
-
-# Copy binary from repository to `/usr/local/bin`
-sudo mv ./bin/gam /usr/local/bin
+# Rebuild and reinstall the tool
+make install
 ```
+
+Remember to replace `path/to/gamon/repository/` with your actual path (by default, it should be `~/.gamon`).

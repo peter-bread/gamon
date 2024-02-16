@@ -19,16 +19,10 @@ brew untap peter-bread/gamon
 If you installed `gamon` using a pre-built binary, you can uninstall it by simply removing the binary:
 
 ```shell
-rm /usr/local/bin/gam
+rm -r ~/.gamon/bin
 ```
 
-You may need to use sudo:
-
-```shell
-sudo rm /usr/local/bin/gam
-```
-
-You can also delete the directory that it was originally extracted to, `~/.gamon`:
+You can also delete the whole directory that it was originally extracted to, `~/.gamon`:
 
 ```shell
 rm -r ~/.gamon
@@ -44,12 +38,6 @@ cd path/to/gamon/repository
 
 # Run the uninstall command
 make uninstall
-```
-
-You may need to use sudo:
-
-```shell
-sudo make uninstall
 ```
 
 You can also remove the source code if you no longer need it:

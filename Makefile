@@ -29,5 +29,16 @@ clean:
 	$(GOCLEAN)
 	rm -rf $(OUTPUT_DIR)
 
+_start_install: build
+	@mkdir -p ~/.gamon/bin
+	@mv $(OUTPUT_DIR)/$(BINARY_NAME) ~/.gamon/bin/$(BINARY_NAME)
+	@cp ./README.md ~/.gamon/README.md
+	@cp ./LICENSE ~/.gamon/LICENSE
+
+install: _start_install clean
+	@echo "\nInstallation completed successfully.\n"
+	@echo "Please add the following line to your .bashrc or .zshrc:\n"
+	@echo '    export PATH="$$HOME/.gamon/bin:$$PATH"'
+
 uninstall:
-	@rm -f /usr/local/bin/$(BINARY_NAME) || echo "Failed to remove binary. Try running with sudo."
+	@rm -f ~/.gamon/bin/$(BINARY_NAME) || echo "Failed to remove binary."
