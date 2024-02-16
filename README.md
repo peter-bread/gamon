@@ -1,9 +1,13 @@
 <!-- omit from toc -->
 # gamon
 
-GitHub Account Manager
-
 ![GitHub Release](https://img.shields.io/github/v/release/peter-bread/gamon?style=for-the-badge&color=ff00a1) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=dev&style=for-the-badge&label=build%20and%20test%3A%20dev) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=main&style=for-the-badge&label=build%20and%20test%3A%20main) ![GitHub commits since latest release](https://img.shields.io/github/commits-since/peter-bread/gamon/latest?style=for-the-badge)
+
+---
+
+Gamon is a command line tool that helps with managing multiple GitHub accounts on one machine.
+
+Right now, it's main functionality is switching the active `gh` account based on your current working directory.
 
 <!-- omit from toc -->
 ## Table of Contents
