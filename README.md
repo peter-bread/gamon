@@ -15,10 +15,10 @@ Right now, it's main functionality is switching the active `gh` account based on
 
 - [Prerequisites](#prerequisites)
 - [Dependencies](#dependencies)
-- [Documentation](#documentation)
 - [Installation](#installation)
 - [Set up](#set-up)
 - [Usage](#usage)
+- [Documentation](#documentation)
 - [License](#license)
 
 ## Prerequisites
@@ -52,12 +52,6 @@ This software depends on the following software:
 `gh` is GitHub’s official command line tool. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with `git` and your code.
 
 `yq` is a portable command-line YAML processor. It uses `jq`-like syntax but works with yaml files as well as json.
-
-## Documentation
-
-- [Manual Installation](./docs/manual_installation.md)
-- [Updating](./docs/update.md)
-- [Uninstalling](./docs/uninstall.md)
 
 ## Installation
 
@@ -160,6 +154,12 @@ Remember to source the `gam script` in each new shell session to enable automati
 ```shell
 source <(gam script)
 ```
+
+## Documentation
+
+- [Manual Installation](./docs/manual_installation.md)
+- [Updating](./docs/update.md)
+- [Uninstalling](./docs/uninstall.md)
 
 ## License
 
