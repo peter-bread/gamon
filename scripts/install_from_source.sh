@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clone gamon repository
-git clone https://github.com/peter-bread/gamon.git
+git clone --depth 1 https://github.com/peter-bread/gamon.git
 
 # Naviage to the gamon directory
 cd gamon
