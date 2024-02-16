@@ -1,7 +1,8 @@
 <!-- omit from toc -->
 # gamon
 
-![GitHub Release](https://img.shields.io/github/v/release/peter-bread/gamon?style=for-the-badge&color=ff00a1) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=dev&style=for-the-badge&label=build%20and%20test%3A%20dev) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=main&style=for-the-badge&label=build%20and%20test%3A%20main) ![GitHub commits since latest release](https://img.shields.io/github/commits-since/peter-bread/gamon/latest?style=for-the-badge) ![GitHub License](https://img.shields.io/github/license/peter-bread/gamon?style=for-the-badge&color=009200&link=github.com%2Fpeter-bread%2Fgamon%2Fblob%2Fmain%2FLICENSE)
+[![GitHub Release](https://img.shields.io/github/v/release/peter-bread/gamon?style=for-the-badge&color=ff00a1)](https://github.com/peter-bread/gamon/releases/latest) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=dev&style=for-the-badge&label=build%20and%20test%3A%20dev) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=main&style=for-the-badge&label=build%20and%20test%3A%20main) ![GitHub commits since latest release](https://img.shields.io/github/commits-since/peter-bread/gamon/latest?style=for-the-badge) [![GitHub License](https://img.shields.io/github/license/peter-bread/gamon?style=for-the-badge&color=008500)
+](./LICENSE)
 
 ---
 
