@@ -76,10 +76,8 @@ mkdir -p ~/.gamon && tar xzf gamon_X.Y.Z_{OS}_{CPU}.tar.gz -C ~/.gamon
 To run globally, move the binary to a directory in your PATH:
 
 ```shell
-mv ~/.gamon/gam /usr/local/bin
+mv ~/.gamon/gam ~/.gamon/bin
 ```
-
-> **Note:** You may need sudo for this.
 
 Finally, you can delete the `.tar.gz` file:
 
@@ -103,11 +101,6 @@ curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/inst
 
 > Before using this script, please ensure you review and understand the operations it performs. This is to ensure that it aligns with your intended use and doesn't cause unintended effects.
 
-You will be prompted for your password as the script does require sudo to:
-
-1. Create `/usr/local/bin` if it doesn't already exist.
-2. Copy the binary to `/usr/local/bin`.
-
 ### Manual Terminal Commands
 
 ```shell
@@ -120,24 +113,8 @@ cd gamon
 # Ensure you are on the main branch
 git checkout main
 
-# Build the tool
-make build
-
-# Create `/usr/local/bin` if it doesn't already exist
-sudo mkdir -p /usr/local/bin
-
-# Copy binary from repository to `/usr/local/bin`
-sudo mv ./bin/gam /usr/local/bin
+# Build and install the tool
+make install
 ```
 
-If for some reason `/bin/local/usr` is not in the `PATH`, then you can add it to your shell configuration file (`~/.bashrc` for bash or `~/.zshrc` for zsh) with:
-
-```shell
-echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-```
-
-Then source the file for the changes to take effect:
-
-```shell
-source ~/.bashrc
-```
+You will be prompted to add `~/.gamon/bin` to PATH in `.bashrc` or `.zshrc`.
