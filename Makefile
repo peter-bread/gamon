@@ -32,6 +32,8 @@ clean:
 _start_install: build
 	@mkdir -p ~/.gamon/bin
 	@mv $(OUTPUT_DIR)/$(BINARY_NAME) ~/.gamon/bin/$(BINARY_NAME)
+	@cp ./README.md ~/.gamon/README.md
+	@cp ./LICENSE ~/.gamon/LICENSE
 
 install: _start_install clean
 	@echo "Installation completed successfully."
