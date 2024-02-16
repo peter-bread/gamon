@@ -7,7 +7,7 @@ git clone https://github.com/peter-bread/gamon.git
 cd gamon
 
 # Ensure you are on the main branch
-git checkout update-installation
+git checkout main
 
 # Build and install
 make install
