@@ -36,8 +36,8 @@ _start_install: build
 	@cp ./LICENSE ~/.gamon/LICENSE
 
 install: _start_install clean
-	@echo -e "\nInstallation completed successfully.\n"
-	@echo -e "Please add the following line to your .bashrc or .zshrc:\n"
+	@echo "\nInstallation completed successfully.\n"
+	@echo "Please add the following line to your .bashrc or .zshrc:\n"
 	@echo '    export PATH="$$HOME/.gamon/bin:$$PATH"'
 
 uninstall:
