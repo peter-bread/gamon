@@ -34,7 +34,7 @@ install: build
 	@mv $(OUTPUT_DIR)/$(BINARY_NAME) ~/.gamon/bin/$(BINARY_NAME)
 	@echo "Installation completed successfully."
 	@echo "Please add the following line to your .bashrc or .zshrc:"
-	@echo 'export PATH="$HOME/.gamon/bin:$PATH"'
+	@echo 'export PATH="$$HOME/.gamon/bin:$$PATH"'
 
 uninstall:
 	@rm -f ~/.gamon/bin/$(BINARY_NAME) || echo "Failed to remove binary."
