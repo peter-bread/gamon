@@ -110,7 +110,7 @@ See [this guide](https://github.com/peter-bread/git-ssh-management) for a settin
 
 > In future releases, I hope to automate much of the set up process.
 >
-> *Or change it entirely...*
+> [*Or change it entirely...*](https://github.com/peter-bread/gamon/issues/55)
 
 You need to set `GAM_REPO_ROOT_DIR`, the path where all of **your** git repositories will be stored.
 
