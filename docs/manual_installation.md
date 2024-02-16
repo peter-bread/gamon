@@ -103,9 +103,15 @@ curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/inst
 
 ### Manual Terminal Commands
 
+This is for the latest version.
+
+If you want to build from source and use a specific version, use the installation script above.
+
+> This also assumes that the latest commit in main is the same as the latest release.
+
 ```shell
 # Clone gamon repository
-git clone https://github.com/peter-bread/gamon.git
+git clone --depth 1 https://github.com/peter-bread/gamon.git
 
 # Naviage to the gamon directory
 cd gamon
