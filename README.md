@@ -88,10 +88,12 @@ curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/inst
 For a specific version:
 
 ```shell
-curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install_binary.sh | bash -s -- X.Y.Z
+curl -fsSL https://raw.githubusercontent.com/peter-bread/gamon/main/scripts/install_binary.sh | bash -s -- X
 ```
 
-where `X.Y.Z` is the version you wish to install.
+where `X` is the major version you wish to install.
+
+> **Note:** The versioning scheme used is `X.Y.Z`. When you specify `X` in the command above, the script will install the latest release within that major version.
 
 See [manual installation](./docs/manual_installation.md) for more installation options.
 

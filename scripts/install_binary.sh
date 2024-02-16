@@ -10,7 +10,7 @@ display_help() {
   echo "If version is not specified, the script will install the latest version."
   echo
   echo "Examples:"
-  echo "  $0 1.2.3   Install version 1.2.3"
+  echo "  $0 1       Install latest version of major version 1"
   echo "  $0         Install the latest version"
   exit 1
 }
@@ -31,12 +31,10 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   display_help
 fi
 
-# If a version is specified, validate the version number format
-if [ -n "$1" ]; then
-  if [[ ! $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    echo "Error: Invalid version number format. Expected format is X.Y.Z"
-    exit 1
-  fi
+# If an argument is passed, check if it is a number
+if [ -n "$1" ] && ! [[ $1 =~ ^[0-9]+$ ]]; then
+  echo "Error: Version must be a number"
+  exit 1
 fi
 
 # Check if curl, wget, and tar are installed
@@ -82,8 +80,11 @@ esac
 # If a version is specified as a command-line argument, use that version.
 # Otherwise, fetch the latest release.
 if [ -n "$1" ]; then
-  VERSION=$1
-  URL=$(curl -s https://api.github.com/repos/peter-bread/gamon/releases/tags/v$VERSION |
+  MAJOR_VERSION=$1
+  URL=$(curl -s https://api.github.com/repos/peter-bread/gamon/releases/tags/v$MAJOR_VERSION |
+    grep "tag_name.*v${MAJOR_VERSION}.*" |
+    sort -Vr |
+    head -n 1 |
     grep "browser_download_url.*${OS}_${CPU}*" |
     cut -d : -f 2,3 |
     tr -d \")
