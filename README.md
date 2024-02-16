@@ -158,6 +158,7 @@ source <(gam script)
 ## Documentation
 
 - [Manual Installation](./docs/manual_installation.md)
+- [Commands](./docs/commands.md)
 - [Updating](./docs/update.md)
 - [Uninstalling](./docs/uninstall.md)
 
