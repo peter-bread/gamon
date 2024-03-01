@@ -29,7 +29,6 @@ Include the following in your shell configuration file:
     source <(gam script)`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-
 		var scriptPath string
 
 		// get user's shell
@@ -47,7 +46,6 @@ Include the following in your shell configuration file:
 
 		// read the script that corresponds to the shell
 		scriptContent, err := fs.ReadFile(content, scriptPath)
-
 		// handle error reading script
 		if err != nil {
 			fmt.Println("Error: ", err)
@@ -57,7 +55,6 @@ Include the following in your shell configuration file:
 
 		// print script
 		fmt.Println(string(scriptContent))
-
 	},
 }
 
