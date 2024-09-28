@@ -4,16 +4,18 @@
 # get current shell
 current_shell=$(ps -p $$ -ocomm=)
 
-cmd="$(gam run)"
+gam_run() {
+  gam run
+}
 
 # calls function to check and/or switch github account on every cd
 if [[ $current_shell == *"zsh"* ]]; then
   autoload -U add-zsh-hook
-  add-zsh-hook chpwd "$cmd"
+  add-zsh-hook chpwd gam_run
 elif [[ $current_shell == *"bash"* ]]; then
   cd() {
     builtin cd "$@" || exit
-    "$cmd"
+    gam_run
   }
 else
   echo "Error: Unsupported shell. Only zsh and bash are supported." >&2
