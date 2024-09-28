@@ -1,16 +1,18 @@
 ---
-name: Release and Update Homebrew
+name: Release and Dispatch Homebrew
 
 on:
   push:
     tags:
       - '*'
 
+  workflow_dispatch:
+
 permissions:
   contents: write
 
 jobs:
-  goreleaser:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,60 +24,41 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21
+          go-version: 1.23
 
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         with:
           distribution: goreleaser
-          version: latest
+          version: "~> v2"
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  update-homebrew:
+  dispatch:
     runs-on: ubuntu-latest
-    needs: goreleaser
-    if: ${{ needs.goreleaser.result == 'success' }}
+    needs: release
+    if: ${{ needs.release.result == 'success' }}
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Update Homebrew formula
+      - name: Get Version
+        id: info
         run: |
-          SOFTWARE_USERNAME=peter-bread
-          SOFTWARE_REPO=gamon
-          TAP_USERNAME=peter-bread
-          TAP_REPO=homebrew-gamon
-          FORMULA_NAME=gamon
-
-          # Get the new version number from the tag
           VERSION="${GITHUB_REF#refs/tags/}"
 
-          # Download the tarball to calculate the SHA-256 checksum
-          wget https://github.com/"$SOFTWARE_USERNAME"/"$SOFTWARE_REPO"/archive/"$VERSION".tar.gz
-          SHA256=$(sha256sum "$VERSION".tar.gz | cut -d ' ' -f 1)
+          wget https://github.com/peter-bread/gamon/archive/"$VERSION".tar.gz
+          CHECKSUM=$(sha256sum "$VERSION".tar.gz | cut -d ' ' -f 1)
 
-          # Clone the tap repository and check out a new branch
-          git clone https://github.com/"$TAP_USERNAME"/"$TAP_REPO".git
-          cd "$TAP_REPO"
-          git checkout -b update-"$FORMULA_NAME"-"$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "checksum=$CHECKSUM" >> "$GITHUB_OUTPUT"
 
-          # Update the formula file
-          sed -i "s/^  url .*/  url \"https:\/\/github.com\/$SOFTWARE_USERNAME\/$SOFTWARE_REPO\/archive\/$VERSION.tar.gz\"/" Formula/$FORMULA_NAME.rb
-          sed -i "s/^  sha256 .*/  sha256 \"$SHA256\"/" Formula/"$FORMULA_NAME".rb
-
-          # Commit and push the changes
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git commit -am "Update $FORMULA_NAME to $VERSION"
-          git remote set-url --push origin https://"$TAP_USERNAME":"$GH_TOKEN"@github.com/"$TAP_USERNAME"/"$TAP_REPO".git
-          git push origin update-"$FORMULA_NAME"-"$VERSION"
-
-          sleep 5
-
-          # Create a pull request
-          gh pr create --title "Update $FORMULA_NAME to $VERSION" --body "This pull request updates the $FORMULA_NAME formula to version $VERSION. The formula file has been updated with the new version's URL and SHA-256 checksum." --base main --head update-"$FORMULA_NAME"-"$VERSION"
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-
+      - name: repository dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.HOMEBREW_PAT }}
+          repository: peter-bread/homebrew-gamon
+          event-type: release
+          client-payload: |-
+            {
+              "version": "${{ steps.info.outputs.version }}",
+              "checksum": "${{ steps.info.outputs.checksum }}"
+            }
