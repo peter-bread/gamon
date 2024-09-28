@@ -9,10 +9,10 @@ import (
 	"testing"
 )
 
-//go:embed scripts/gam.sh
+//go:embed hooks/hook.sh
 var script string
 
-func TestScriptCmd_Run(t *testing.T) {
+func TestHookCmd_Run(t *testing.T) {
 	tests := []struct {
 		name     string
 		shell    string
@@ -44,7 +44,7 @@ func TestScriptCmd_Run(t *testing.T) {
 			os.Setenv("SHELL", tt.shell)
 
 			// Run the scriptCmd
-			scriptCmd.Run(scriptCmd, []string{})
+			hookCmd.Run(hookCmd, []string{})
 
 			// Close the write end of the pipe
 			w.Close()
