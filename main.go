@@ -23,8 +23,8 @@ package main
 
 import (
 	"github.com/peter-bread/gamon/v2/cmd"
+	_ "github.com/peter-bread/gamon/v2/cmd/hook"
 	_ "github.com/peter-bread/gamon/v2/cmd/run"
-	_ "github.com/peter-bread/gamon/v2/cmd/script"
 )
 
 func main() {
