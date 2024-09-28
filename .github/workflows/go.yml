@@ -1,3 +1,4 @@
+---
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
@@ -5,17 +6,17 @@ name: Go
 
 on:
   push:
-    branches: [ "dev", "main" ]
+    branches: ["dev", "main"]
   pull_request:
-    branches: [ "dev", "main" ]
+    branches: ["dev", "main"]
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
-        go-version: [ '1.21' ]
+        os: [ubuntu-latest]
+        go-version: ['1.23']
     steps:
       - uses: actions/checkout@v4
 
@@ -35,7 +36,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        go-version: [ '1.21' ]
+        go-version: ['1.23']
     steps:
       - uses: actions/checkout@v4
 
@@ -46,4 +47,6 @@ jobs:
           cache: false
 
       - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v3.7.0
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
