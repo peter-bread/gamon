@@ -43,7 +43,7 @@ jobs:
       - name: Get Version
         id: info
         run: |
-          VERSION="${GITHUB_REF#refs/tags/}"
+          VERSION=${GITHUB_REF#refs/tags/}
 
           wget https://github.com/peter-bread/gamon/archive/"$VERSION".tar.gz
           CHECKSUM=$(sha256sum "$VERSION".tar.gz | cut -d ' ' -f 1)
