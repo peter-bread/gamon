@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 Peter Sheehan <github.com/peter-bread>
 */
 package script
 
@@ -15,27 +15,26 @@ import (
 
 // embed scripts directory so all can be accessed
 //
-//go:embed scripts/*
+//go:embed hooks/*
 var content embed.FS
 
-// scriptCmd represents the script command
-var scriptCmd = &cobra.Command{
-	Use:   "script",
+// hookCmd represents the hook command
+var hookCmd = &cobra.Command{
+	Use:   "hook",
 	Short: "Generates a script that contains the functions for account switching",
 	Long: `Generates a script that contains the functions for account switching.
     
 Include the following in your shell configuration file:
 
-    source <(gam script)`,
+    source <(gam hook)`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-
 		var scriptPath string
 
 		// get user's shell
 		switch shell := os.Getenv("SHELL"); shell {
 		case "/bin/zsh", "/usr/bin/zsh", "/bin/bash", "/usr/bin/bash":
-			scriptPath = "scripts/gam.sh"
+			scriptPath = "hooks/hook.sh"
 		case "/bin/fish", "/usr/bin/fish":
 			// TODO add case for fish
 			fmt.Println("Fish shell not supported yet")
@@ -47,7 +46,6 @@ Include the following in your shell configuration file:
 
 		// read the script that corresponds to the shell
 		scriptContent, err := fs.ReadFile(content, scriptPath)
-
 		// handle error reading script
 		if err != nil {
 			fmt.Println("Error: ", err)
@@ -57,12 +55,11 @@ Include the following in your shell configuration file:
 
 		// print script
 		fmt.Println(string(scriptContent))
-
 	},
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(scriptCmd)
+	cmd.RootCmd.AddCommand(hookCmd)
 
 	// Here you will define your flags and configuration settings.
 
