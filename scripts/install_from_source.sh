@@ -28,12 +28,12 @@ display_help() {
 }
 
 # If the first argument is -h or --help, display the help message
-if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+if [[ $1 = "-h" || $1 = "--help" ]]; then
   display_help
 fi
 
 # If an argument is passed, check if it is a number
-if [ -n "$1" ] && ! [[ $1 =~ ^[0-9]+$ ]]; then
+if [[ -n $1 && ! $1 =~ ^[0-9]+$ ]]; then
   echo "Error: Version must be a number"
   exit 1
 fi
@@ -55,14 +55,14 @@ git fetch --tags
 
 # If MAJOR_VERSION is not empty, get the latest tag that matches the major version
 # Otherwise, get the latest tag
-if [ -n "$MAJOR_VERSION" ]; then
+if [[ -n $MAJOR_VERSION ]]; then
   LATEST_TAG=$(git tag -l "v${MAJOR_VERSION}.*" | sort -V | tail -n 1)
 else
-  LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+  LATEST_TAG=$(git describe --tags "$(git rev-list --tags --max-count=1)")
 fi
 
 # If LATEST_TAG is empty, print an error message and exit
-if [ -z "$LATEST_TAG" ]; then
+if [[ -z $LATEST_TAG ]]; then
   echo "Error: No tags found that match the major version: v${MAJOR_VERSION}"
   exit 1
 fi
@@ -71,7 +71,7 @@ fi
 LATEST_TAG=$(git tag -l "v${MAJOR_VERSION}.*" | sort -V | tail -n 1)
 
 # Checkout the latest tag
-git checkout $LATEST_TAG
+git checkout "$LATEST_TAG"
 
 # Build and install
 if ! make install; then

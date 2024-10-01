@@ -17,7 +17,7 @@ display_help() {
 
 # Function to clean up partially downloaded or extracted files
 cleanup() {
-  if [ $? -ne 0 ]; then
+  if [[ $? -ne 0 ]]; then
     echo "Installation failed. Cleaning up..."
     rm -rf ~/.gamon
   fi
@@ -27,12 +27,12 @@ cleanup() {
 trap cleanup EXIT
 
 # If the first argument is -h or --help, display the help message
-if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+if [[ $1 = "-h" || $1 = "--help" ]]; then
   display_help
 fi
 
 # If an argument is passed, check if it is a number
-if [ -n "$1" ] && ! [[ $1 =~ ^[0-9]+$ ]]; then
+if [[ -n $1 && ! $1 =~ ^[0-9]+$ ]]; then
   echo "Error: Version must be a number"
   exit 1
 fi
@@ -79,9 +79,9 @@ esac
 
 # If a version is specified as a command-line argument, use that version.
 # Otherwise, fetch the latest release.
-if [ -n "$1" ]; then
+if [[ -n $1 ]]; then
   MAJOR_VERSION=$1
-  URL=$(curl -s https://api.github.com/repos/peter-bread/gamon/releases/tags/v$MAJOR_VERSION |
+  URL=$(curl -s https://api.github.com/repos/peter-bread/gamon/releases/tags/v"$MAJOR_VERSION" |
     grep "tag_name.*v${MAJOR_VERSION}.*" |
     sort -Vr |
     head -n 1 |
@@ -96,7 +96,7 @@ else
 fi
 
 # Check if URL is found
-if [ -z "$URL" ]; then
+if [[ -z $URL ]]; then
   echo "No download URL found for OS: ${OS}, CPU: ${CPU}"
   exit 1
 fi
@@ -105,7 +105,7 @@ fi
 mkdir -p ~/.gamon/bin
 
 # Download the tarball and extract it to the application directory
-if ! wget --show-progress -q $URL -O - | tar xzf - -C ~/.gamon/; then
+if ! wget --show-progress -q "$URL" -O - | tar xzf - -C ~/.gamon/; then
   echo "Error: Failed to download or extract tarball."
   exit 1
 fi
