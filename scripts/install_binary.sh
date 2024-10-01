@@ -95,6 +95,8 @@ else
     tr -d \")
 fi
 
+URL=$(echo "$URL" | xargs)
+
 # Check if URL is found
 if [[ -z $URL ]]; then
   echo "No download URL found for OS: ${OS}, CPU: ${CPU}"
