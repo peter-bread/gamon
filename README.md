@@ -2,6 +2,12 @@
 
 # gamon
 
+> [!WARNING]
+> Gamon is being archived. This repo is a bit of a mess, some of the install
+> scripts are broken and I'm not happy with the tool at the moment.
+>
+> I will likely do a full rewrite and re-release it in a new repo.
+
 <!-- markdownlint-disable MD013 -->
 
 [![GitHub Release](https://img.shields.io/github/v/release/peter-bread/gamon?style=for-the-badge&color=ff00a1)](https://github.com/peter-bread/gamon/releases/latest) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=dev&style=for-the-badge&label=build%20and%20test%3A%20dev) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peter-bread/gamon/go.yml?branch=main&style=for-the-badge&label=build%20and%20test%3A%20main) ![GitHub commits since latest release](https://img.shields.io/github/commits-since/peter-bread/gamon/latest?style=for-the-badge) [![GitHub License](https://img.shields.io/github/license/peter-bread/gamon?style=for-the-badge&color=008500)](./LICENSE)
