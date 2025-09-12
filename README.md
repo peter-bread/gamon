@@ -3,10 +3,11 @@
 # gamon
 
 > [!WARNING]
-> Gamon is being archived. This repo is a bit of a mess, some of the install
-> scripts are broken and I'm not happy with the tool at the moment.
+> Gamon has been archived.
 >
-> I will likely do a full rewrite and re-release it in a new repo.
+> Checkout the replacement, [Gamon3](https://github.com/peter-bread/gamon3).
+
+---
 
 <!-- markdownlint-disable MD013 -->
 
